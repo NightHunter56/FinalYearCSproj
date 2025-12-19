@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Input Results</title>
+<style>
+body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 20px; }
+h1 { color: #333; }
+form { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+table { width: 100%; border-collapse: collapse; margin-bottom: 20px; }
+th, td { border: 1px solid #ddd; padding: 12px; text-align: center; } /* Centered text */
+th { background-color: #f1f1f1; }
+select { width: 150px; padding: 8px; }
+input[type="submit"] { background: #007bff; color: white; border: none; padding: 10px; cursor: pointer; }
+input[type="submit"]:hover { background: #0056b3; }
+</style>
+</head>
+<body>
+<h1>Input Results for Round {{ round_num }}</h1>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+{% for message in messages %}
+<li style="color: red;">{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+<form method="POST">
+<table>
+<tr><th>Player 1</th><th>Player 2</th><th>Result</th></tr>
+{% for m in matches %}
+{% if m.player2_id is not none %}
+<tr>
+<td>{{ m.p1_name }}</td>
+<td>{{ m.p2_name }}</td>
+<td>
+  <select name="result_{{ m.id }}">
+    <option value="" {% if m.result is none %}selected{% endif %}>Select</option>
+    <option value="1.0" {% if m.result == 1.0 %}selected{% endif %}>{{ m.p1_name }} wins</option>
+    <option value="0.5" {% if m.result == 0.5 %}selected{% endif %}>Draw</option>
+    <option value="0.0" {% if m.result == 0.0 %}selected{% endif %}>{{ m.p2_name }} wins</option>
+  </select>
+</td>
+</tr>
+{% endif %}
+{% endfor %}
+</table>
+<input type="submit" value="Save Results">
+</form>
+</body>
+</html>

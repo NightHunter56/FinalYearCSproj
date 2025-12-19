@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Create Tournament</title>
+<style>
+body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 20px; }
+h1 { color: #333; }
+form { background: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); width: 300px; }
+input[type="text"], input[type="number"] { width: 100%; padding: 8px; margin: 10px 0; box-sizing: border-box; }
+input[type="submit"] { background: #007bff; color: white; border: none; padding: 10px; cursor: pointer; }
+input[type="submit"]:hover { background: #0056b3; }
+</style>
+</head>
+<body>
+<h1>Create Tournament</h1>
+<form method="POST">
+    Name: <input type="text" name="name"><br>
+    Number of Rounds: <input type="number" name="num_rounds" min="1"><br>
+    <input type="submit" value="Create">
+</form>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+{% for message in messages %}
+<li style="color: red;">{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+</body>
+</html>

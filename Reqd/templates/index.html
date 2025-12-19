@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Tournaments</title>
+<style>
+body { font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 20px; }
+h1 { color: #333; }
+a { color: #007bff; text-decoration: none; }
+a:hover { text-decoration: underline; }
+ul { list-style-type: none; padding: 0; }
+li { margin: 10px 0; background: #fff; padding: 10px; border-radius: 5px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+</style>
+</head>
+<body>
+<h1>Tournaments</h1>
+<a href="{{ url_for('create_tournament') }}">Create New Tournament</a>
+<ul>
+{% for t in tournaments %}
+<li><a href="{{ url_for('tournament', id=t.id) }}">{{ t.name }}</a></li>
+{% endfor %}
+</ul>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+<ul>
+{% for message in messages %}
+<li style="color: red;">{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endwith %}
+</body>
+</html>
