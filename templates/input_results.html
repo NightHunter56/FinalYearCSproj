@@ -15,9 +15,7 @@ input[type="submit"]:hover { background: #0056b3; }
 </style>
 </head>
 <body>
-{%if !updated %}
 <h1>Input Results for Round {{ round_num }}</h1>
-{% endif %}
 {% with messages = get_flashed_messages() %}
 {% if messages %}
 <ul>

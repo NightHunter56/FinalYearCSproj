@@ -262,10 +262,10 @@ def tournament(id):
             WHERE m.tournament_id = %s AND m.round_num = %s
         """, (id, r))
         matches[r] = cursor.fetchall()
-
+    curround = tour['current_round']
     cursor.close()
     conn.close()
-    return render_template('tournament.html', tour=tour, players=players, standings=standings, matches=matches)
+    return render_template('tournament.html', tour=tour, players=players, standings=standings, matches=matches, curround=curround)
 
 @app.route('/delete_tournament/<int:id>', methods=['POST'])
 def delete_tournament(id):

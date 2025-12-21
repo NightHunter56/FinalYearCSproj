@@ -209,9 +209,11 @@ button.back-btn:hover {
     {% endif %}
   </td>
   </tr>
-  {% endfor %}
+   {% endfor %}
   </table>
+   {% if curround == r%}
   <button class="input-btn" onclick="window.location.href='{{ url_for('input_results', id=tour.id, round_num=r) }}'">Input Results for Round {{ r }}</button>
+   {% endif %}
 </div>
 {% endfor %}
 
